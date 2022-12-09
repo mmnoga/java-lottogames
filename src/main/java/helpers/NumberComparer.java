@@ -13,12 +13,10 @@ public class NumberComparer {
     }
 
     public int numberOfHitNumbers(){
-        int hits = 0;
-        for(int number: userNumbers){
-            if(lottoNumbers.contains(number)){
-                hits++;
-            }
-        }
+        int hits;
+        hits = (int) userNumbers.stream()
+                .filter(number -> lottoNumbers.contains(number))
+                .count();
         return hits;
     }
 }
