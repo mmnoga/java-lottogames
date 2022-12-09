@@ -1,0 +1,3 @@
+# LottoGames
+
+Java
