@@ -2,6 +2,8 @@ package helpers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NumberGenerator {
     private int minNumber;
@@ -20,9 +22,11 @@ public class NumberGenerator {
     }
 
     public List<Integer> getRandomNumbers() {
-        for (int i = 0; i < numberOfDraw; i++) {
-            randomNumbers.add(generateRandomNumber());
-        }
+        Stream<Integer> randStream = Stream.generate(
+                        () -> generateRandomNumber())
+                .distinct()
+                .limit(numberOfDraw);
+        List<Integer> randomNumbers = randStream.collect(Collectors.toList());
         return randomNumbers;
     }
 }
