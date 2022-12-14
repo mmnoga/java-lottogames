@@ -1,11 +1,10 @@
 package helpers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NumberComparer {
-    private List<Integer> lottoNumbers = new ArrayList<>();
-    private List<Integer> userNumbers = new ArrayList<>();
+    private List<Integer> lottoNumbers;
+    private List<Integer> userNumbers;
 
     public NumberComparer(List<Integer> lottoNumbers, List<Integer> userNumbers){
         this.lottoNumbers = lottoNumbers;

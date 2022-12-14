@@ -6,7 +6,6 @@ import helpers.NumberProvider;
 import helpers.WinChecker;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MiniLotek implements LottoGameInterface{
@@ -14,8 +13,8 @@ public class MiniLotek implements LottoGameInterface{
     private final int MAX_VALUE = 99;
     private final int NUMBER_OF_DRAW = 6;
 
-    List<Integer> lottoNumbers = new ArrayList<>();
-    List<Integer> userNumbers = new ArrayList<>();
+    List<Integer> lottoNumbers;
+    List<Integer> userNumbers;
 
     NumberGenerator numberGenerator;
     NumberProvider userNumberProvider;
@@ -35,14 +34,14 @@ public class MiniLotek implements LottoGameInterface{
 
     @Override
     public List<Integer> generateNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers;
         numberGenerator = new NumberGenerator(MIN_VALUE, MAX_VALUE, NUMBER_OF_DRAW);
         lottoNumbers = numberGenerator.getRandomNumbers();
         return  lottoNumbers;
     }
 
     public List<Integer> receiveUserNumbers() throws IOException {
-        List<Integer> userNumbers = new ArrayList<>();
+        List<Integer> userNumbers;
         userNumberProvider = new NumberProvider(MIN_VALUE, MAX_VALUE, NUMBER_OF_DRAW);
         userNumbers = userNumberProvider.getUserNumbers();
         return userNumbers;
