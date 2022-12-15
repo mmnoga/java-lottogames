@@ -1,6 +1,6 @@
-package helpers;
+package pl.minigames.lotto;
 
-public class WinChecker {
+class WinChecker {
     private final int MIN_HITS_FOR_WIN = 3;
     private int numberOfHits;
 

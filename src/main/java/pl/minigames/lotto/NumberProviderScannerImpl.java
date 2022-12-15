@@ -1,25 +1,33 @@
-package helpers;
-
-import exceptions.OutOfRangeException;
-import exceptions.RepeatedInputException;
+package pl.minigames.lotto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import pl.minigames.lotto.exceptions.OutOfRangeException;
+import pl.minigames.lotto.exceptions.RepeatedInputException;
 
-public class NumberProvider {
+class NumberProviderScannerImpl implements NumberProvider {
     private List<Integer> userNumbers = new ArrayList<>();
     private int minNumber;
     private int maxNumber;
     private int numberOfRandomNumbers;
     private int inputNumber;
 
-    public NumberProvider(int minNumber, int maxNumber, int numberOfRandomNumbers) {
-        this.minNumber = minNumber;
-        this.maxNumber = maxNumber;
-        this.numberOfRandomNumbers = numberOfRandomNumbers;
+    private final int MIN_VALUE = 1;
+    private final int MAX_VALUE = 99;
+    private final int NUMBER_OF_DRAW = 6;
+
+    public NumberProviderScannerImpl() {
+        this.minNumber = MIN_VALUE;
+        this.maxNumber = MAX_VALUE;
+        this.numberOfRandomNumbers = NUMBER_OF_DRAW;
+    }
+
+    public List<Integer> getUserNumbers() throws IOException {
+        parseUserNumbers();
+        return userNumbers;
     }
 
     private void parseUserNumbers() throws IOException {
@@ -38,7 +46,7 @@ public class NumberProvider {
                     if (inputNumber < minNumber || inputNumber > maxNumber) {
                         throw new OutOfRangeException("out of range number");
                     }
-                    if(userNumbers.contains(inputNumber)){
+                    if (userNumbers.contains(inputNumber)) {
                         throw new RepeatedInputException("repeated number");
                     }
                     userNumbers.add(inputNumber);
@@ -52,10 +60,5 @@ public class NumberProvider {
                 }
             }
         }
-    }
-
-    public List<Integer> getUserNumbers() throws IOException {
-        parseUserNumbers();
-        return userNumbers;
     }
 }

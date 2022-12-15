@@ -1,8 +1,8 @@
-package helpers;
+package pl.minigames.lotto;
 
 import java.util.List;
 
-public class NumberComparer {
+class NumberComparer {
     private List<Integer> lottoNumbers;
     private List<Integer> userNumbers;
 

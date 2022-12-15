@@ -1,4 +1,4 @@
-package helpers;
+package pl.minigames.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class NumberGenerator {
+class NumberGenerator {
     private int minNumber;
     private int maxNumber;
     private int drawNumber;

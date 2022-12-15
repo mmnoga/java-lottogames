@@ -1,8 +1,8 @@
-package helpers;
+package pl.minigames.lotto;
 
 import java.util.List;
 
-public class NumberProviderService {
+class NumberProviderService {
 
     private NumberProviderRepository numberProviderRepository;
 
