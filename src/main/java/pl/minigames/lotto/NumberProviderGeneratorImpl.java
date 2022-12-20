@@ -14,11 +14,10 @@ class NumberProviderGeneratorImpl implements NumberProvider{
 
     private List<Integer> getRandomNumbers() {
         Stream<Integer> randStream = Stream.generate(
-                        () -> generateRandomNumber())
+                        this::generateRandomNumber)
                 .distinct()
                 .limit(NUMBER_OF_DRAW);
-        List<Integer> randomNumbers = randStream.collect(Collectors.toList());
-        return randomNumbers;
+        return randStream.collect(Collectors.toList());
     }
 
     @Override
