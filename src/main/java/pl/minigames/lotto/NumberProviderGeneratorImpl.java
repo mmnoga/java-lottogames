@@ -23,7 +23,7 @@ class NumberProviderGeneratorImpl implements NumberProvider{
     }
 
     @Override
-    public List<Integer> getNumbers() throws IOException {
+    public List<Integer> getNumbers() {
         List<Integer> lottoNumbers;
         lottoNumbers = getRandomNumbers();
         return lottoNumbers;
