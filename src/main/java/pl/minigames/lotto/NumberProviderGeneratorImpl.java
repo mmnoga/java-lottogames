@@ -1,6 +1,5 @@
 package pl.minigames.lotto;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
