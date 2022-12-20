@@ -9,23 +9,11 @@ import pl.minigames.lotto.exceptions.OutOfRangeException;
 import pl.minigames.lotto.exceptions.RepeatedInputException;
 
 class NumberProviderScannerImpl implements NumberProvider {
+
     private List<Integer> userNumbers = new ArrayList<>();
-    private int minNumber;
-    private int maxNumber;
-    private int numberOfRandomNumbers;
     private int inputNumber;
 
-    private final int MIN_VALUE = 1;
-    private final int MAX_VALUE = 99;
-    private final int NUMBER_OF_DRAW = 6;
-
-    public NumberProviderScannerImpl() {
-        this.minNumber = MIN_VALUE;
-        this.maxNumber = MAX_VALUE;
-        this.numberOfRandomNumbers = NUMBER_OF_DRAW;
-    }
-
-    public List<Integer> getUserNumbers() throws IOException {
+    public List<Integer> getNumbers() throws IOException {
         parseUserNumbers();
         return userNumbers;
     }
@@ -34,16 +22,16 @@ class NumberProviderScannerImpl implements NumberProvider {
         BufferedReader in;
         in = new BufferedReader((new InputStreamReader(System.in)));
 
-        for (int i = 1; i < numberOfRandomNumbers + 1; i++) {
+        for (int i = 1; i < NUMBER_OF_DRAW + 1; i++) {
 
             while (true) {
                 System.out.print(
                         String.format(
                                 "Enter %d of %d number (range %d to %d): ",
-                                i, numberOfRandomNumbers, minNumber, maxNumber));
+                                i, NUMBER_OF_DRAW, MIN_VALUE, MAX_VALUE));
                 try {
                     inputNumber = Integer.parseInt(in.readLine());
-                    if (inputNumber < minNumber || inputNumber > maxNumber) {
+                    if (inputNumber < MIN_VALUE || inputNumber > MAX_VALUE) {
                         throw new OutOfRangeException("out of range number");
                     }
                     if (userNumbers.contains(inputNumber)) {

@@ -4,26 +4,30 @@ import java.io.IOException;
 import java.util.List;
 
 class MiniLotek {
-    private final int MIN_VALUE = 1;
-    private final int MAX_VALUE = 99;
-    private final int NUMBER_OF_DRAW = 6;
 
     List<Integer> lottoNumbers;
     List<Integer> userNumbers;
 
-    NumberGenerator numberGenerator;
     NumberProvider userNumberProvider;
-    NumberComparer numberComparer;
-    WinChecker winChecker;
+    NumberProvider lottoNumberProvider;
+    NumberComparerProvider numberComparer;
+    WinCheckerProvider winChecker;
 
-    MiniLotek(NumberProvider userNumberProvider) {
+    MiniLotek(NumberProvider userNumberProvider,
+              NumberProvider lottoNumberProvider,
+              NumberComparerProvider numberComparer,
+              WinCheckerProvider winChecker
+    ) {
         this.userNumberProvider = userNumberProvider;
+        this.lottoNumberProvider = lottoNumberProvider;
+        this.numberComparer = numberComparer;
+        this.winChecker = winChecker;
     }
 
     public LottoGameResult play() throws IOException {
         userNumbers = receiveUserNumbers();
         lottoNumbers = generateNumbers();
-        int hits = hitNumbers();
+        int hits = getHitsNumber();
         String prize = showPrize(hits);
 
         return new LottoGameResult(lottoNumbers, userNumbers, hits, prize);
@@ -31,27 +35,22 @@ class MiniLotek {
 
     public List<Integer> receiveUserNumbers() throws IOException {
         List<Integer> userNumbers;
-//        userNumberProvider = new NumberProvider(MIN_VALUE, MAX_VALUE, NUMBER_OF_DRAW);
-        userNumbers = userNumberProvider.getUserNumbers();
+        userNumbers = userNumberProvider.getNumbers();
         return userNumbers;
     }
 
-    public List<Integer> generateNumbers() {
+    public List<Integer> generateNumbers() throws IOException {
         List<Integer> lottoNumbers;
-        numberGenerator = new NumberGenerator(MIN_VALUE, MAX_VALUE, NUMBER_OF_DRAW);
-        lottoNumbers = numberGenerator.getRandomNumbers();
+        lottoNumbers = lottoNumberProvider.getNumbers();
         return lottoNumbers;
     }
 
-    public int hitNumbers() {
-        numberComparer = new NumberComparer(lottoNumbers, userNumbers);
-        int hits = numberComparer.numberOfHitNumbers();
-        return hits;
+    public int getHitsNumber() {
+        return numberComparer.getHitsNumber(lottoNumbers, userNumbers);
     }
 
 
-    public String showPrize(int hitNumbers) {
-        winChecker = new WinChecker(hitNumbers);
-        return winChecker.getPrize();
+    public String showPrize(int hits) {
+        return winChecker.getPrize(hits);
     }
 }

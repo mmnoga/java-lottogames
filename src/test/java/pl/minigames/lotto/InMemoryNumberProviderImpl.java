@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class InMemoryNumberProviderImpl implements NumberProvider {
-    private final List<Integer> numbersFromUser;
+    private final List<Integer> numbers;
 
     public InMemoryNumberProviderImpl(List<Integer> numbersFromUser) {
-        this.numbersFromUser = numbersFromUser;
+        this.numbers = numbersFromUser;
     }
 
     @Override
-    public List<Integer> getUserNumbers() throws IOException {
-        return numbersFromUser;
+    public List<Integer> getNumbers() throws IOException {
+        return numbers;
     }
 }

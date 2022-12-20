@@ -14,7 +14,7 @@ public class MiniLotekTest {
         // given
         List<Integer> numbersFromUser = List.of(5, 6, 7, 8, 9, 10);
         NumberProvider provider = new InMemoryNumberProviderImpl(numbersFromUser);
-        MiniLotek miniLotek = new MiniLotek(provider);
+        MiniLotek miniLotek = new MiniLotek(provider, );
 
         // when
         LottoGameResult result = miniLotek.play();

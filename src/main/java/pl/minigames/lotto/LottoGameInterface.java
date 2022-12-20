@@ -1,7 +1,10 @@
 package pl.minigames.lotto;
 
-//public interface LottoGameInterface {
+import java.util.List;
+
+interface LottoGameInterface {
+
 //    List<Integer> generateNumbers();
-//
 //    String showPrize(int hitNumbers);
-//}
+
+}
