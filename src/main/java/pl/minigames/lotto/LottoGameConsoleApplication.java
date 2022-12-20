@@ -16,7 +16,7 @@ class LottoGameConsoleApplication {
                 numberComparer,
                 winChecker);
 
-        LottoGameResult result = miniLotek.play();
+        LottoGameResultImpl result = miniLotek.play();
 
         System.out.println("MiniLotek numbers: " + result.getLottoNumbers());
         System.out.println("Your numbers: " + result.getUserNumbers());

@@ -24,13 +24,13 @@ class MiniLotek {
         this.winChecker = winChecker;
     }
 
-    public LottoGameResult play() throws IOException {
+    public LottoGameResultImpl play() throws IOException {
         userNumbers = receiveUserNumbers();
         lottoNumbers = generateNumbers();
         int hits = getHitsNumber();
         String prize = showPrize(hits);
 
-        return new LottoGameResult(lottoNumbers, userNumbers, hits, prize);
+        return new LottoGameResultImpl(lottoNumbers, userNumbers, hits, prize);
     }
 
     public List<Integer> receiveUserNumbers() throws IOException {

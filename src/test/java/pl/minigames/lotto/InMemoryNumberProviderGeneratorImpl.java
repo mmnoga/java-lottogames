@@ -3,11 +3,12 @@ package pl.minigames.lotto;
 import java.io.IOException;
 import java.util.List;
 
-public class InMemoryNumberProviderImpl implements NumberProvider {
+public class InMemoryNumberProviderGeneratorImpl implements NumberProvider{
+
     private final List<Integer> numbers;
 
-    public InMemoryNumberProviderImpl(List<Integer> numbersFromUser) {
-        this.numbers = numbersFromUser;
+    public InMemoryNumberProviderGeneratorImpl(List<Integer> lottoNumbers) {
+        this.numbers = lottoNumbers;
     }
 
     @Override
