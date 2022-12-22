@@ -2,7 +2,7 @@ package pl.minigames.lotto;
 
 import java.io.IOException;
 
-class LottoGameConsoleApplication {
+public class LottoGameConsoleApplication {
     public static void main(String[] args) throws IOException {
 
         NumberProvider userNumberProvider = new NumberProviderScannerImpl();

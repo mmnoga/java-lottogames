@@ -13,6 +13,11 @@ class NumberProviderScannerImpl implements NumberProvider {
     private List<Integer> userNumbers = new ArrayList<>();
     private int inputNumber;
 
+    public List<Integer> getNumbers() throws IOException {
+        parseUserNumbers();
+        return userNumbers;
+    }
+
     private void parseUserNumbers() throws IOException {
         BufferedReader in;
         in = new BufferedReader((new InputStreamReader(System.in)));
@@ -45,8 +50,4 @@ class NumberProviderScannerImpl implements NumberProvider {
         }
     }
 
-    public List<Integer> getNumbers() throws IOException {
-        parseUserNumbers();
-        return userNumbers;
-    }
 }

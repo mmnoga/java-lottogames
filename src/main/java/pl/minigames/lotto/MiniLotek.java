@@ -29,7 +29,6 @@ class MiniLotek {
         lottoNumbers = generateNumbers();
         int hits = getHitsNumber();
         String prize = showPrize(hits);
-
         return new LottoGameResultImpl(lottoNumbers, userNumbers, hits, prize);
     }
 

@@ -7,6 +7,13 @@ import java.util.stream.Stream;
 
 class NumberProviderGeneratorImpl implements NumberProvider{
 
+    @Override
+    public List<Integer> getNumbers() {
+        List<Integer> lottoNumbers;
+        lottoNumbers = getRandomNumbers();
+        return lottoNumbers;
+    }
+
     private int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt((MAX_VALUE - MIN_VALUE) + 1) + MIN_VALUE;
@@ -18,13 +25,6 @@ class NumberProviderGeneratorImpl implements NumberProvider{
                 .distinct()
                 .limit(NUMBER_OF_DRAW);
         return randStream.collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Integer> getNumbers() {
-        List<Integer> lottoNumbers;
-        lottoNumbers = getRandomNumbers();
-        return lottoNumbers;
     }
 
 }
