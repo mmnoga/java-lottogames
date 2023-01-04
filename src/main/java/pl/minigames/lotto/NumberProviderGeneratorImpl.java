@@ -26,5 +26,4 @@ class NumberProviderGeneratorImpl implements NumberProvider{
                 .limit(NUMBER_OF_DRAW);
         return randStream.collect(Collectors.toList());
     }
-
 }

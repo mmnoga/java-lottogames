@@ -17,15 +17,15 @@ public class LottoGameConsoleApplication {
                 numberComparer,
                 winChecker);
 
-        LottoGameResultImpl result = miniLotek.play();
+        GameResult result = miniLotek.play();
         displayMessage(result);
 
     }
 
-    private static void displayMessage(LottoGameResultImpl result) {
-        System.out.println("MiniLotek numbers: " + result.getLottoNumbers());
-        System.out.println("Your numbers: " + result.getUserNumbers());
-        System.out.println("Hit number: " + result.getHits() + ". " + result.getPrize());
+    private static void displayMessage(GameResult result) {
+        System.out.println("MiniLotek numbers: " + result.lottoNumbers());
+        System.out.println("Your numbers: " + result.userNumbers());
+        System.out.println("Hit number: " + result.hits() + ". " + result.prize());
     }
 
 }

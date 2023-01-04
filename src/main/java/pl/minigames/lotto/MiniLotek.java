@@ -5,9 +5,6 @@ import java.util.List;
 
 class MiniLotek {
 
-    List<Integer> lottoNumbers;
-    List<Integer> userNumbers;
-
     NumberProvider userNumberProvider;
     NumberProvider lottoNumberProvider;
     NumberComparerProvider numberComparer;
@@ -22,34 +19,19 @@ class MiniLotek {
         this.lottoNumberProvider = lottoNumberProvider;
         this.numberComparer = numberComparer;
         this.winChecker = winChecker;
-    }
+}
 
-    public LottoGameResultImpl play() throws IOException {
-        userNumbers = receiveUserNumbers();
-        lottoNumbers = generateNumbers();
-        int hits = getHitsNumber();
-        String prize = showPrize(hits);
-        return new LottoGameResultImpl(lottoNumbers, userNumbers, hits, prize);
-    }
-
-    public List<Integer> receiveUserNumbers() throws IOException {
-        List<Integer> userNumbers;
-        userNumbers = userNumberProvider.getNumbers();
-        return userNumbers;
-    }
-
-    public List<Integer> generateNumbers() throws IOException {
-        List<Integer> lottoNumbers;
-        lottoNumbers = lottoNumberProvider.getNumbers();
-        return lottoNumbers;
-    }
-
-    public int getHitsNumber() {
-        return numberComparer.getHitsNumber(lottoNumbers, userNumbers);
-    }
-
-
-    public String showPrize(int hits) {
-        return winChecker.getPrize(hits);
+    public GameResult play() throws IOException {
+        List<Integer> userNumbers = userNumberProvider.getNumbers();
+        NumberValidator numberValidator = new NumberValidator();
+        ValidationResult validationResult = numberValidator.validate(userNumbers);
+        if (validationResult.isNotValid()) {
+            return new GameResult(null, null, 0, null, validationResult.message());
+        }
+        List<Integer> lottoNumbers = lottoNumberProvider.getNumbers();
+        int hits = numberComparer.getHitsNumber(lottoNumbers, userNumbers);
+        String prize = winChecker.getPrize(hits);
+        // save for Date X
+        return new GameResult(lottoNumbers, userNumbers, hits, prize, validationResult.message());
     }
 }
