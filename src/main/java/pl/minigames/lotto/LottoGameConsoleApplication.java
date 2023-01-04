@@ -23,9 +23,13 @@ public class LottoGameConsoleApplication {
     }
 
     private static void displayMessage(GameResult result) {
-        System.out.println("MiniLotek numbers: " + result.lottoNumbers());
-        System.out.println("Your numbers: " + result.userNumbers());
-        System.out.println("Hit number: " + result.hits() + ". " + result.prize());
+        if (result.isValid()) {
+            System.out.println("MiniLotek numbers: " + result.lottoNumbers());
+            System.out.println("Your numbers: " + result.userNumbers());
+            System.out.println("Hit number: " + result.hits() + ". " + result.prize());
+        } else {
+            System.out.println("Error: " + result.message());
+        }
     }
 
 }

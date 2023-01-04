@@ -6,5 +6,6 @@ public record GameResult(List<Integer> lottoNumbers,
                          List<Integer> userNumbers,
                          int hits,
                          String prize,
-                         String message) {
+                         String message,
+                         boolean isValid) {
 }
